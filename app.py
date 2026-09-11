@@ -38,14 +38,18 @@ class AddTx(StatesGroup):
 router = Router()
 
 
+def _webapp_url_valid() -> bool:
+    return WEBAPP_URL.strip().startswith(("http://", "https://"))
+
+
 def main_menu_kb():
     rows = [
         [KeyboardButton(text="➕ Kirim qo'shish"), KeyboardButton(text="➖ Chiqim qo'shish")],
         [KeyboardButton(text="📊 Oylik hisobot"), KeyboardButton(text="💰 Balans")],
         [KeyboardButton(text="↩️ Oxirgisini bekor qilish")],
     ]
-    if WEBAPP_URL:
-        rows.insert(0, [KeyboardButton(text="📱 Mini-ilovani ochish", web_app=WebAppInfo(url=WEBAPP_URL))])
+    if _webapp_url_valid():
+        rows.insert(0, [KeyboardButton(text="📱 Mini-ilovani ochish", web_app=WebAppInfo(url=WEBAPP_URL.strip()))])
     return ReplyKeyboardMarkup(keyboard=rows, resize_keyboard=True)
 
 
@@ -76,7 +80,7 @@ def months_kb():
 async def cmd_start(message: Message, state: FSMContext):
     await state.clear()
     text = "Assalomu alaykum! Men sizning shaxsiy moliya botingizman.\n\n"
-    if WEBAPP_URL:
+    if _webapp_url_valid():
         text += "📱 Pastdagi tugma orqali to'liq interfeysli mini-ilovani oching, yoki menyudan foydalaning."
     else:
         text += "Kirim va chiqimlaringizni kiritib boring, men oylik hisobotni tayyorlab beraman."
