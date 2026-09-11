@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Hisobchi</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <h1>💰 Hisobchi</h1>
+    </header>
+
+    <section class="balance-card">
+      <div class="balance-main">
+        <span class="balance-label">Qoldiq</span>
+        <span id="balanceValue" class="balance-value">0 so'm</span>
+      </div>
+      <div class="balance-row">
+        <div class="balance-col in">
+          <span>Kirim</span>
+          <strong id="kirimValue">0</strong>
+        </div>
+        <div class="balance-col out">
+          <span>Chiqim</span>
+          <strong id="chiqimValue">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="add">➕ Qo'shish</button>
+      <button class="tab-btn" data-tab="report">📊 Hisobot</button>
+      <button class="tab-btn" data-tab="history">🕓 Tarix</button>
+    </nav>
+
+    <section id="tab-add" class="tab-content active">
+      <div class="type-switch">
+        <button id="typeIncome" class="type-btn">➕ Kirim</button>
+        <button id="typeExpense" class="type-btn active">➖ Chiqim</button>
+      </div>
+      <input id="amountInput" type="number" inputmode="decimal" placeholder="Summa (so'm)" class="input">
+      <div id="categoryGrid" class="category-grid"></div>
+      <input id="commentInput" type="text" placeholder="Izoh (ixtiyoriy)" class="input">
+      <button id="saveBtn" class="save-btn">Saqlash</button>
+    </section>
+
+    <section id="tab-report" class="tab-content">
+      <select id="monthSelect" class="input"></select>
+      <div id="reportContent" class="report-content"></div>
+    </section>
+
+    <section id="tab-history" class="tab-content">
+      <div id="historyContent" class="history-content"></div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
